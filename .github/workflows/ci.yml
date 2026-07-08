@@ -10,7 +10,7 @@ jobs:
     name: Foundry tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: foundry-rs/foundry-toolchain@v1
       - name: Install libraries
         working-directory: contracts
@@ -23,7 +23,7 @@ jobs:
     name: SDK build and typecheck
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
