@@ -78,9 +78,21 @@ export function LiveDemo() {
     <div className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-5 sm:p-7">
       <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h3 className="text-lg font-extrabold tracking-tight">Run it against a wallet</h3>
-          <p className="mt-1 text-[14px] text-[var(--color-muted)]">
-            Real 402 handshake on your configured Arc network.
+          <h3 className="text-lg font-extrabold tracking-tight">Run the real handshake</h3>
+          <p className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-[14px] text-[var(--color-muted)]">
+            Live gateway on {arcParams.name}
+            <a
+              href={
+                arcParams.explorerUrl
+                  ? `${arcParams.explorerUrl.replace(/\/$/, "")}/address/${arcParams.gateway}`
+                  : undefined
+              }
+              target="_blank"
+              rel="noreferrer"
+              className="link-sweep font-mono text-[13px] font-semibold text-[var(--color-ink)]"
+            >
+              {arcParams.gateway}
+            </a>
           </p>
         </div>
         <ConnectButton showBalance={false} chainStatus="icon" />

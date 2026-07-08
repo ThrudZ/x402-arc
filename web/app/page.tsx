@@ -1,6 +1,9 @@
 import { ProtocolFlow } from "@/components/ProtocolFlow";
 import { LiveDemo } from "@/components/LiveDemo";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { arcParams } from "@/lib/client-config";
+
+const shortAddr = (a: string) => `${a.slice(0, 6)}…${a.slice(-4)}`;
 
 export default function Home() {
   return (
@@ -12,7 +15,7 @@ export default function Home() {
         <Header />
         <Hero />
         <HowItWorks />
-        <section id="demo" className="scroll-mt-20 py-6 sm:py-10">
+        <section id="live" className="scroll-mt-20 py-6 sm:py-10">
           <LiveDemo />
         </section>
         <Footer />
@@ -38,10 +41,10 @@ function Header() {
           x402 spec
         </a>
         <a
-          href="#demo"
+          href="#live"
           className="btn-anim mr-1 hidden rounded-md px-3 py-2 text-[14px] font-semibold text-[var(--color-ink)] hover:bg-[var(--color-surface-2)] sm:inline-block"
         >
-          Live demo
+          Try it live
         </a>
         <ThemeToggle />
       </nav>
@@ -54,11 +57,13 @@ function Hero() {
     <section className="grid items-center gap-10 py-10 sm:py-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
       <div>
         <div
-          className="rise inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-1 text-[12px] font-semibold text-[var(--color-muted)]"
+          className="rise inline-flex flex-wrap items-center gap-x-2 gap-y-1 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-1 text-[12px] font-semibold text-[var(--color-muted)]"
           style={{ animationDelay: "40ms" }}
         >
-          <span className="live-dot inline-block h-1.5 w-1.5 rounded-full bg-[var(--color-accent)]" />
-          x402 payment gateway, escrow scheme
+          <span className="live-dot inline-block h-1.5 w-1.5 rounded-full bg-[var(--color-ok)]" />
+          Live on {arcParams.name}
+          <span className="text-[var(--color-border)]">/</span>
+          <span className="font-mono text-[var(--color-ink)]">{shortAddr(arcParams.gateway)}</span>
         </div>
 
         <h1
@@ -82,7 +87,7 @@ function Hero() {
           style={{ animationDelay: "210ms" }}
         >
           <a
-            href="#demo"
+            href="#live"
             className="btn-anim rounded-md bg-[var(--color-accent)] px-5 py-2.5 text-[15px] font-semibold text-[var(--color-accent-ink)] shadow-[0_10px_30px_-12px_oklch(0.5_0.16_250/0.7)] hover:bg-[var(--color-accent-strong)]"
           >
             Try the handshake
