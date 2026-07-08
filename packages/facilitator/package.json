@@ -12,7 +12,7 @@
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
-    "viem": "^2.21.0",
+    "viem": "^2.54.6",
     "x402-arc": "workspace:*"
   },
   "devDependencies": {
