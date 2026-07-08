@@ -2,6 +2,16 @@
   "name": "facilitator",
   "version": "0.1.0",
   "description": "x402 facilitator: verifies and settles escrow vouchers on Arc",
+  "license": "MIT",
+  "author": "ThrudZ",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ThrudZ/x402-arc.git",
+    "directory": "packages/facilitator"
+  },
+  "engines": {
+    "node": ">=20"
+  },
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
