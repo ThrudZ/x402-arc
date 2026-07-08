@@ -31,4 +31,5 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile --ignore-scripts
       - run: pnpm --filter x402-arc build
+      - run: pnpm --filter x402-arc test
       - run: pnpm --filter facilitator typecheck
