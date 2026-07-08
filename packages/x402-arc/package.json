@@ -2,6 +2,17 @@
   "name": "x402-arc",
   "version": "0.1.0",
   "description": "x402 escrow payment gateway SDK for Arc (Circle's L1)",
+  "license": "MIT",
+  "author": "ThrudZ",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ThrudZ/x402-arc.git",
+    "directory": "packages/x402-arc"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "sideEffects": false,
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
