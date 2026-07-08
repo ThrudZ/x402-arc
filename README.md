@@ -1,5 +1,8 @@
 # x402 Payment Gateway on Arc
 
+[![CI](https://github.com/ThrudZ/x402-arc/actions/workflows/ci.yml/badge.svg)](https://github.com/ThrudZ/x402-arc/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 Machine-payable APIs need settlement that is instant, cheap, and denominated in
 the unit the service actually charges in. On Arc, that unit is USDC, and USDC is
 the native asset. That removes the usual friction of an x402 integration: there
