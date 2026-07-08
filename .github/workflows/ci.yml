@@ -29,6 +29,6 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
-      - run: pnpm install --frozen-lockfile
+      - run: pnpm install --frozen-lockfile --ignore-scripts
       - run: pnpm --filter x402-arc build
       - run: pnpm --filter facilitator typecheck
