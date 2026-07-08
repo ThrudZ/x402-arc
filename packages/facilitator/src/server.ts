@@ -40,6 +40,9 @@ function main() {
     };
 
     try {
+      if (req.method === "GET" && req.url === "/health") {
+        return send(200, { status: "ok" });
+      }
       if (req.method !== "POST") return send(405, { error: "method not allowed" });
       const { payload, requirements } = await readBody(req);
       if (!payload || !requirements) return send(400, { error: "missing payload or requirements" });
