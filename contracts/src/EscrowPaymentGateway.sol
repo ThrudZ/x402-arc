@@ -79,6 +79,7 @@ contract EscrowPaymentGateway is EIP712, Ownable, ReentrancyGuard {
     }
 
     /// @notice Deposit USDC into escrow to fund future requests.
+    /// @param amount Amount of token (USDC base units) to pull from the caller.
     function deposit(uint256 amount) external nonReentrant {
         if (amount == 0) revert ZeroAmount();
         // A pending withdrawal is cancelled by a fresh deposit.
@@ -96,6 +97,7 @@ contract EscrowPaymentGateway is EIP712, Ownable, ReentrancyGuard {
     }
 
     /// @notice Withdraw unused escrow balance after the cooldown elapses.
+    /// @param amount Amount of the escrow balance to return to the caller.
     function withdraw(uint256 amount) external nonReentrant {
         if (amount == 0) revert ZeroAmount();
         uint256 unlockAt = withdrawUnlockAt[msg.sender];
@@ -109,6 +111,8 @@ contract EscrowPaymentGateway is EIP712, Ownable, ReentrancyGuard {
     /// @notice Redeem a buyer-signed voucher, moving funds to the seller.
     /// @dev Callable by anyone (typically the facilitator). Settlement is
     ///      authorized entirely by the buyer's signature, not the caller.
+    /// @param v The voucher authorizing the payment.
+    /// @param signature The buyer's EIP-712 signature over the voucher.
     function redeem(Voucher calldata v, bytes calldata signature) external nonReentrant {
         if (block.timestamp > v.deadline) revert DeadlineExpired();
 
@@ -153,6 +157,8 @@ contract EscrowPaymentGateway is EIP712, Ownable, ReentrancyGuard {
     }
 
     /// @notice Owner sets the protocol fee and its recipient.
+    /// @param _feeBps Fee in basis points, capped at MAX_FEE_BPS.
+    /// @param _feeRecipient Address that accrues the fee portion of redemptions.
     function setFee(uint256 _feeBps, address _feeRecipient) external onlyOwner {
         if (_feeBps > MAX_FEE_BPS) revert FeeTooHigh();
         feeBps = _feeBps;
@@ -161,6 +167,8 @@ contract EscrowPaymentGateway is EIP712, Ownable, ReentrancyGuard {
     }
 
     /// @notice EIP-712 digest for a voucher. Exposed for off-chain signing.
+    /// @param v The voucher to hash.
+    /// @return The EIP-712 typed-data digest the buyer signs.
     function voucherDigest(Voucher calldata v) external view returns (bytes32) {
         return _hashTypedDataV4(
             keccak256(
