@@ -1,0 +1,21 @@
+{
+  "network": "arc-testnet",
+  "chainId": 5042002,
+  "rpcUrl": "https://rpc.testnet.arc.network",
+  "contracts": {
+    "EscrowPaymentGateway": {
+      "address": "0x049914870eF36AbC7c92E390937A012bEd1E1ec3",
+      "deployTx": "0xaff95328780127cb1465fb92100d34cf2a5fb12ac0c54fb2f32f0099308fdf37",
+      "block": 50811529,
+      "constructorArgs": {
+        "token": "0x3600000000000000000000000000000000000000",
+        "owner": "0x1Ce85622329Ac630E4c658e70e49876E10a1C9c9"
+      }
+    }
+  },
+  "usdc": {
+    "address": "0x3600000000000000000000000000000000000000",
+    "decimals": 6,
+    "note": "ERC-20 interface over Arc's native USDC"
+  }
+}

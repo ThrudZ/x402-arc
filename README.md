@@ -60,3 +60,22 @@ pnpm web              # starts the demo on :3000
 Arc chain id, RPC URL and the canonical USDC address are network parameters and
 are intentionally not hardcoded. Fill them from the Arc network docs before
 running.
+
+## Live deployment
+
+The escrow gateway is deployed and settling real payments on Arc testnet
+(chain `5042002`). Full record in [deployments/arc-testnet.json](deployments/arc-testnet.json).
+
+| | |
+|---|---|
+| EscrowPaymentGateway | `0x049914870eF36AbC7c92E390937A012bEd1E1ec3` |
+| USDC (ERC-20, 6 decimals) | `0x3600000000000000000000000000000000000000` |
+| RPC | `https://rpc.testnet.arc.network` |
+
+To run the real 402 handshake against it (deposit, sign a voucher, settle
+on-chain, claim), point `PRIVATE_KEY` at a USDC-funded account and run:
+
+```bash
+pnpm --filter x402-arc build
+node --import tsx packages/facilitator/scripts/e2e.ts
+```
