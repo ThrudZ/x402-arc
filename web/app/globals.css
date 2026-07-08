@@ -1,0 +1,159 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace;
+
+  /* Light identity: sky-tinted canvas, one committed accent. */
+  --color-canvas: oklch(0.972 0.012 245);
+  --color-surface: oklch(1 0 0);
+  --color-surface-2: oklch(0.955 0.014 245);
+  --color-ink: oklch(0.22 0.02 250);
+  --color-muted: oklch(0.47 0.025 250);
+  --color-border: oklch(0.9 0.016 245);
+  --color-accent: oklch(0.62 0.14 245);
+  --color-accent-strong: oklch(0.5 0.16 250);
+  --color-accent-ink: oklch(0.98 0.01 245);
+  --color-ok: oklch(0.58 0.13 155);
+  --color-warn: oklch(0.62 0.17 30);
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+
+  --z-sticky: 100;
+  --z-modal: 300;
+  --z-toast: 400;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+  --color-canvas: oklch(0.24 0.012 250);
+  --color-surface: oklch(0.28 0.014 250);
+  --color-surface-2: oklch(0.31 0.016 250);
+  --color-ink: oklch(0.94 0.01 245);
+  --color-muted: oklch(0.72 0.02 245);
+  --color-border: oklch(0.36 0.018 250);
+  --color-accent: oklch(0.7 0.13 245);
+  --color-accent-strong: oklch(0.62 0.15 248);
+  --color-accent-ink: oklch(0.16 0.02 250);
+}
+
+html {
+  background: var(--color-canvas);
+}
+
+body {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-weight: 500;
+  letter-spacing: -0.011em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: color-mix(in oklch, var(--color-accent) 26%, transparent);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+  font-feature-settings: "ss01", "zero";
+}
+
+/* Ambient field behind the hero: soft accent bloom, not glass. */
+.bloom {
+  background:
+    radial-gradient(60% 60% at 78% 8%, color-mix(in oklch, var(--color-accent) 22%, transparent), transparent 70%),
+    radial-gradient(50% 50% at 8% 30%, color-mix(in oklch, var(--color-accent-strong) 14%, transparent), transparent 72%);
+}
+
+.grid-lines {
+  background-image:
+    linear-gradient(to right, var(--color-border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-border) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(70% 60% at 50% 0%, black, transparent 78%);
+  opacity: 0.5;
+}
+
+.btn-anim {
+  transition: transform 0.09s var(--ease-out-quart), background-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+.btn-anim:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+.link-sweep {
+  background-image: linear-gradient(var(--color-accent), var(--color-accent));
+  background-size: 0% 1.5px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.3s var(--ease-out-quart);
+}
+.link-sweep:hover {
+  background-size: 100% 1.5px;
+}
+
+/* First-load choreography */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in oklch, var(--color-ok) 55%, transparent);
+  }
+  70% {
+    box-shadow: 0 0 0 7px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+@keyframes trace {
+  from {
+    stroke-dashoffset: var(--len);
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.rise {
+  animation: rise 0.7s var(--ease-out-expo) both;
+}
+.fade {
+  animation: fade 0.9s ease both;
+}
+.live-dot {
+  animation: pulse-ring 2s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise,
+  .fade {
+    animation: fade 0.01s both;
+  }
+  .live-dot {
+    animation: none;
+  }
+}

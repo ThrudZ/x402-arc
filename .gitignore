@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.next/
+out/
+.env
+.env.local
+web/.env.local
+contracts/lib/
+contracts/out/
+contracts/cache/
+contracts/broadcast/
+*.log
+.DS_Store
+next-env.d.ts
