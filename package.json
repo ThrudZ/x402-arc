@@ -6,7 +6,9 @@
     "build": "pnpm -r --filter ./packages/* build",
     "facilitator": "pnpm --filter facilitator dev",
     "web": "pnpm --filter web dev",
-    "test:contracts": "cd contracts && forge test"
+    "test": "pnpm --filter x402-arc test",
+    "test:contracts": "cd contracts && forge test",
+    "e2e": "node --import tsx packages/facilitator/scripts/e2e.ts"
   },
   "devDependencies": {
     "tsx": "^4.23.0"
