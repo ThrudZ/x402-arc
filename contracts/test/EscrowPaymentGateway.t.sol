@@ -2,21 +2,9 @@
 pragma solidity 0.8.30;
 
 import {Test} from "forge-std/Test.sol";
-import {ERC20} from "openzeppelin-contracts/token/ERC20/ERC20.sol";
 import {IERC20} from "openzeppelin-contracts/token/ERC20/IERC20.sol";
 import {EscrowPaymentGateway} from "../src/EscrowPaymentGateway.sol";
-
-contract MockUSDC is ERC20 {
-    constructor() ERC20("Mock USDC", "USDC") {}
-
-    function mint(address to, uint256 amount) external {
-        _mint(to, amount);
-    }
-
-    function decimals() public pure override returns (uint8) {
-        return 6;
-    }
-}
+import {MockUSDC} from "./mocks/MockUSDC.sol";
 
 contract EscrowPaymentGatewayTest is Test {
     EscrowPaymentGateway internal gateway;
