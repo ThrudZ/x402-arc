@@ -1,6 +1,5 @@
 # x402 Payment Gateway on Arc
 
-[![CI](https://github.com/ThrudZ/x402-arc/actions/workflows/ci.yml/badge.svg)](https://github.com/ThrudZ/x402-arc/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 Machine-payable APIs need settlement that is instant, cheap, and denominated in

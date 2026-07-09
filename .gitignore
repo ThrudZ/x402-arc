@@ -15,3 +15,6 @@ next-env.d.ts
 
 # build artifacts
 *.tsbuildinfo
+
+# local editor/agent config
+.claude/

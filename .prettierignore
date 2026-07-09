@@ -1,8 +1,0 @@
-pnpm-lock.yaml
-contracts/lib
-contracts/out
-contracts/cache
-contracts/broadcast
-**/dist
-**/.next
-deployments
